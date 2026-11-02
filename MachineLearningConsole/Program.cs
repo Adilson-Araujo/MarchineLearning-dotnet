@@ -10,6 +10,7 @@ void ExemploRegressa()
     trainer.CarregarDadosCSV(Path.Combine(AppContext.BaseDirectory, "casas_treinamento_grande.csv"));
     trainer.TreinarModelo();
     trainer.AvaliarModelo();
+    trainer.AvaliarMelhorAlgoritmo();
     
     var pathModelo = Path.Combine(AppContext.BaseDirectory, "modelo_trienado_regressao.zip");
     trainer.SalvarModelo(pathModelo);

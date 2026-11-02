@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MachineLearning.Models;
 using Microsoft.ML;
+using Microsoft.ML.AutoML;
 
 namespace MachineLearning.ML
 {
@@ -55,5 +56,30 @@ namespace MachineLearning.ML
             System.Console.WriteLine($"RMSE: {metricas.RootMeanSquaredError}");
             System.Console.WriteLine($"R2: {metricas.RSquared}");
         }
+
+        public void AvaliarMelhorAlgoritmo()
+        {
+            var experimentSettings = new RegressionExperimentSettings()
+            {
+                MaxExperimentTimeInSeconds = 60
+            };
+
+            var experiment = mLContext.Auto().CreateRegressionExperiment(experimentSettings);
+
+            System.Console.WriteLine("Executando AutoML...");
+
+            var result = experiment.Execute(dados, labelColumnName: "Preco");
+
+            var melhorExecucao = result.BestRun;
+
+            System.Console.WriteLine($"Melhor algoritmo: {melhorExecucao.TrainerName}");
+            System.Console.WriteLine($"MAE: {melhorExecucao.ValidationMetrics.MeanAbsoluteError}");
+            System.Console.WriteLine($"RMSE: {melhorExecucao.ValidationMetrics.RootMeanSquaredError}");
+            System.Console.WriteLine($"R2: {melhorExecucao.ValidationMetrics.RSquared}");
+
+            modeloTreinado = melhorExecucao.Model;
+        }
+
+
     }
 }
