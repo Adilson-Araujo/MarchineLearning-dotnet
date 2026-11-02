@@ -11,4 +11,16 @@
     <ProjectReference Include="..\MachineLearning\MachineLearning.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update = "casas_treinamento.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update = "casas_treinamento_grande.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
