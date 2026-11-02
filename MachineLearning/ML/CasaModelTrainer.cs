@@ -28,9 +28,9 @@ namespace MachineLearning.ML
                 "Features",
                 nameof(CasaInputData.Tamanho),
                 nameof(CasaInputData.Quartos)
-            ).Append(mLContext.Regression.Trainers.Sdca(
+            ).Append(mLContext.Regression.Trainers.LightGbm(
                 labelColumnName: "Preco",
-                maximumNumberOfIterations: 100
+                numberOfIterations: 100
             ));
 
             modeloTreinado = pipeline.Fit(dados);
